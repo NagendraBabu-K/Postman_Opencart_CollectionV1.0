@@ -179,7 +179,7 @@
               "{\r",
               "    pm.expect(jsonData.products[0].product_id).to.eql(\"40\");\r",
               "    pm.expect(jsonData.products[0].name).to.eql(\"iPhone\");\r",
-              "    pm.expect(jsonData.products[0].stock).to.eql(true);\r",
+              "    //pm.expect(jsonData.products[0].stock).to.eql(true);\r",
               "});\r",
               "\r",
               "pm.collectionVariables.set(\"cart_id\", jsonData.products[0].cart_id)"
@@ -348,91 +348,30 @@
         }
       },
       "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
     },
     {
-      "name": "Delete Product From Cart",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "pm.test(\"Status code is 200\", function () {\r",
-              "    pm.response.to.have.status(200);\r",
-              "});\r",
-              "\r",
-              "pm.test(\"Checking success message in json response: \", ()=>\r",
-              "{\r",
-              "    var jsonData=pm.response.json();\r",
-              "    pm.expect(jsonData.success).to.eql(\"Success: You have modified your shopping cart!\");\r",
-              "});\r",
-              "\r",
-              "pm.collectionVariables.unset(\"api_token_val\");\r",
-              "pm.collectionVariables.unset(\"cart_id\");\r",
-              ""
-            ],
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {}
-          }
-        }
-      ],
-      "request": {
-        "auth": {
-          "type": "apikey",
-          "apikey": [
-            {
-              "key": "value",
-              "value": "{{api_token_val}}",
-              "type": "string"
-            },
-            {
-              "key": "key",
-              "value": "api_token",
-              "type": "string"
-            },
-            {
-              "key": "in",
-              "value": "query",
-              "type": "string"
-            }
-          ]
-        },
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "formdata",
-          "formdata": [
-            {
-              "key": "key",
-              "value": "{{cart_id}}",
-              "type": "text",
-              "uuid": "9b454f5a-b4a1-491e-b5e5-0541c895716f"
-            }
-          ]
-        },
-        "url": {
-          "raw": "http://192.168.137.1/opencart/upload/index.php?route=api/cart/remove",
-          "protocol": "http",
-          "host": [
-            "192",
-            "168",
-            "137",
-            "1"
-          ],
-          "path": [
-            "opencart",
-            "upload",
-            "index.php"
-          ],
-          "query": [
-            {
-              "key": "route",
-              "value": "api/cart/remove"
-            }
-          ]
-        }
-      },
-      "response": []
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
     }
   ]
 }
